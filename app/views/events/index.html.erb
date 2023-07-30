@@ -7,7 +7,7 @@
       <p><%= event.description %></p>
       <p>Where: <strong><%= event.location %></strong></p>
       <p>When: <strong><%= event.date %></strong></p>
-      <p>Time: <strong><%= event.time %></strong></p>
+      <p>Time: <strong><%= event.time.strftime("%H:%M") %></strong></p>
     </div>
   <% end %>
 </div>
