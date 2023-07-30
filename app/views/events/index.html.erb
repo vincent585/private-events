@@ -2,12 +2,6 @@
 
 <div>
   <% @events.each do |event| %>
-    <div>
-      <h3><%= event.name %></h3>
-      <p><%= event.description %></p>
-      <p>Where: <strong><%= event.location %></strong></p>
-      <p>When: <strong><%= event.date %></strong></p>
-      <p>Time: <strong><%= event.time.strftime("%H:%M") %></strong></p>
-    </div>
+    <%= render "shared/event_preview", event: event %>
   <% end %>
 </div>
