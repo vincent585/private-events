@@ -2,7 +2,6 @@
 
 # controller responsible for the handling of events
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create]
   def index
     @events = Event.all
   end
