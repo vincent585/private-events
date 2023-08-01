@@ -4,6 +4,13 @@ class EventAttendancesController < ApplicationController
   end
 
   def create
-    # TODO - add code for creating an event attendance, i.e. an attended event and attendee
+    @event = Event.find(params[:attended_event_id])
+    @event_attendance = EventAttendance.new(attended_event_id: @event.id, attendee_id: current_user.id)
+
+    if @event_attendance.save
+      flash[:notice] = "You're signed up for the event!"
+    else
+      flash[:notice] = "Something went wrong"
+    end
   end
 end
