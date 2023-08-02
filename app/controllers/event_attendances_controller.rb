@@ -5,12 +5,20 @@ class EventAttendancesController < ApplicationController
 
   def create
     @event = Event.find(params[:attended_event_id])
-    @event_attendance = EventAttendance.new(attended_event_id: @event.id, attendee_id: current_user.id)
+    if EventAttendance.find_by(attendee_id: current_user.id, attended_event_id: @event.id).nil?
+      @event_attendance = EventAttendance.new(attended_event_id: @event.id, attendee_id: current_user.id)
+      if @event_attendance.save
+        flash[:notice] = "You're signed up for the event!"
 
-    if @event_attendance.save
-      flash[:notice] = "You're signed up for the event!"
+        redirect_to event_path(@event.id)
+      else
+        flash[:notice] = "Something went wrong"
+
+        redirect_to event_path(@event.id)
+      end
     else
-      flash[:notice] = "Something went wrong"
+      flash[:notice] = "You're already attending this event!"
+      redirect_to event_path(@event.id)
     end
   end
 end
