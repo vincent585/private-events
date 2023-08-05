@@ -8,11 +8,11 @@
   <p>Description: <%= @event.description %></p>
   <p>Location: <%= @event.location %></p>
   <p>When: <strong><%= @event.date %></strong></p>
-  <p>Time: <strong><%= @event.time.strftime("%H:%M") %></strong></p>
+  <p>Time: <strong><%= @event.time.strftime('%H:%M') %></strong></p>
 
   <% if user_signed_in? %>
     <button>
-      <%= link_to "Attend this event", event_attendances_path(attended_event_id: @event.id), data: { 'turbo-method' => :post }%>
+      <%= link_to 'Attend this event', event_attendances_path(attended_event_id: @event.id), data: { 'turbo-method' => :post }%>
     </button>
   <% end %>
 

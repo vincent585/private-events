@@ -1,10 +1,10 @@
 <hr>
 <h3>Upcoming Events</h3>
-<% user.attended_events.where("date >= ?", Date.today).each do |event| %>
+<% user.attended_events.where('date >= ?', Date.today).each do |event| %>
   <p><%= event.name %></p>
 <% end %>
 <hr>
 <h3>Past Events</h3>
-<% user.attended_events.where("date < ?", Date.today).each do |event| %>
+<% user.attended_events.where('date < ?', Date.today).each do |event| %>
   <p><%= event.name %></p>
 <% end %>

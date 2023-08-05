@@ -2,7 +2,7 @@
 
 <div>
   <% @user.created_events.each do |event| %>
-    <%= render "shared/event_preview", event: event %>
+    <%= render 'shared/event_preview', event: event %>
   <% end %>
 
   <%= render 'attended_events', user: @user %>

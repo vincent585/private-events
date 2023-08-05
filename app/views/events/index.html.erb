@@ -1,7 +1,12 @@
 <h1>Upcoming events</h1>
-
 <div>
-  <% @events.each do |event| %>
+  <% Event.upcoming.each do |event| %>
+    <%= render "shared/event_preview", event: event %>
+  <% end %>
+  <hr>
+
+  <h1>Past events</h1>
+  <% Event.past.each do |event| %>
     <%= render "shared/event_preview", event: event %>
   <% end %>
 </div>
