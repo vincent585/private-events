@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# controller for creating attended events through EventAttendance join table
 class EventAttendancesController < ApplicationController
   def new
     @event_attendance = EventAttendance.new
