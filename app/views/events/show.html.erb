@@ -10,7 +10,7 @@
   <p>When: <strong><%= @event.date %></strong></p>
   <p>Time: <strong><%= @event.time.strftime('%H:%M') %></strong></p>
 
-  <% if current_user.id == @event.creator_id %>
+  <% if current_user == @event.creator %>
     <button>
       <%= link_to 'Delete this event', event_path(@event), data: {
         turbo_method: :delete,
@@ -19,11 +19,19 @@
     </button>
   <% end %>
 
+  <% if current_user == @event.creator %>
+    <button>
+      <%= link_to 'Update this event', edit_event_path(@event.id) %>
+    </button>
+  <% end %>
+
   <% if user_signed_in? %>
     <button>
       <%= link_to 'Attend this event', event_attendances_path(attended_event_id: @event.id), data: { 'turbo-method' => :post }%>
     </button>
   <% end %>
+
+
 
   <%= render 'attendee_list', event: @event %>
 </div>
