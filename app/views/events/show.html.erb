@@ -25,10 +25,18 @@
     </button>
   <% end %>
 
-  <% if user_signed_in? %>
+  <% if user_signed_in? && @event.creator != current_user %>
     <button>
       <%= link_to 'Attend this event', event_attendances_path(attended_event_id: @event.id), data: { 'turbo-method' => :post }%>
     </button>
+    <% if @event.attendees.include?(current_user) %>
+      <button>
+        <%= link_to 'Unfollow this event', event_attendance_path(attended_event_id: @event.id), data: {
+          turbo_method: :delete,
+          turbo_confirm: 'Are you sure?'
+        } %>
+      </button>
+    <% end %>
   <% end %>
 
 

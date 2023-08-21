@@ -18,6 +18,15 @@ class EventAttendancesController < ApplicationController
     handle_new_attendance
   end
 
+  def destroy
+    @event = Event.find(params[:attended_event_id])
+    @event_attendance = EventAttendance.find_by(attendee_id: current_user.id, attended_event_id: @event.id)
+
+    @event_attendance.destroy
+    flash[:notice] = "You're no longer attending this event"
+    redirect_to event_path(@event.id)
+  end
+
   private
 
   def handle_new_attendance
